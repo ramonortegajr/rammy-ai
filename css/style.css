@@ -1,0 +1,373 @@
+/* Rammy */
+/* General styles */
+html, body {
+    background: rgb(22, 9, 56);
+    background-image: linear-gradient(to top, rgb(22, 9, 56), rgb(24, 12, 58), rgb(26, 14, 60), rgb(27, 17, 62), rgb(29, 19, 64), rgb(31, 22, 66), rgb(33, 24, 67), rgb(35, 27, 69), rgb(37, 29, 71), rgb(38, 32, 73), rgb(40, 34, 75), rgb(42, 37, 77));
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.centered-content {
+    text-align: center;
+    margin-top: -10%;
+}
+
+.display-3 {
+    font-size: 2.5rem;
+}
+
+.lead {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+/* Rammy */
+.personal-assistant {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.rammy {
+    width: 150px;
+    height: 130px;
+    border-radius: 45%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(155, 255, 255, 0.5);
+    animation: breathe-and-jump 3s linear infinite;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.rammy > .eyes > .eye {
+    width: 25px;
+    height: 30px;
+}
+
+.command-list > li {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+}
+
+.hey-rammy {
+    font-size: 1.5rem;
+}
+
+.personal-assistant {
+    position: relative;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.rammy {
+    position: absolute;
+    bottom: 50px;
+    width: 110px;
+    height: 95px;
+    border-radius: 45%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    animation: breathe-and-jump 3s linear infinite;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.rammy::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: calc(100% + 3px);
+    height: calc(100% + 2px);
+    background-color: #18c;
+    background: linear-gradient(to bottom, #5fc, #1a8);
+    background: -webkit-linear-gradient(to bottom, #5cf, #18c);
+    border-radius: 45%;
+    opacity: 0;
+    transition: 0.3s linear all;
+}
+
+.rammy > .eyes { position: relative; }
+
+.rammy > .eyes > .eye {
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
+    animation: blink 5s linear infinite;
+}
+
+.rammy > .eyes > .eye.left { left: 25%; }
+
+.rammy > .eyes > .eye.right { right: 25%; }
+
+/* Platforms */
+.platform {
+    transform: rotateX(70deg);
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 100px #fff,
+                 0 0 15px #fff inset;
+    animation: jump-pulse 3s linear infinite;
+}
+
+.platform,
+.command-list > li::before {
+    border-radius: 50%;
+    transition: 0.2s linear all;
+}
+
+.command-list > li::before {
+    content: '';
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    width: 65px;
+    height: 65px;
+    transform: translate(-50%) rotateX(70deg);
+    box-shadow: 0 0 50px #fff,
+                 0 0 15px #fff inset;
+}
+
+/* Hover */
+.rammy:not(.active):hover {
+    animation: shake-to-alert 0.5s linear;
+    height: 105px;
+    transform: translateY(-4px);
+}
+
+.rammy:not(.active):hover,
+.rammy:not(.active):hover > .eyes > .eye {
+    border-color: #fc5;
+    box-shadow: 0 0 5px #fc5;
+}
+
+.rammy:not(.active):hover + .platform {
+    box-shadow: 0 0 100px #fc5,
+                 0 0 15px #fc5 inset;
+    animation: shake-pulse 0.5s linear;
+}
+
+/* Awaiting Command */
+.rammy.active { animation: bounce-then-breathe 5s linear infinite; }
+
+.rammy.active::before { opacity: 1; }
+
+.rammy.active,
+.rammy.active > .eyes > .eye {
+    border-color: #5fc;
+    box-shadow: 0 0 5px #5fc;
+}
+
+.rammy.active + .platform {
+    box-shadow: 0 0 100px #5fc,
+                 0 0 25px #5fc inset;
+    animation: bounce-pulse 5s linear;
+}
+
+/* Deactivation */
+.rammy.inactive {
+    animation: deactivate 0.75s linear,
+                  breathe-and-jump 3s linear infinite;
+}
+
+.rammy.inactive + .platform {
+    animation: deactivate-platform 0.75s linear;
+}
+
+/* Command List */
+.command-list {
+    position: absolute;
+    bottom: 35px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.command-list > li {
+    display: none;
+    width: 45px;
+    height: 45px;
+    line-height: 37px;
+    font-size: 25px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px #fff;
+    margin: 10px 12px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.rammy.active ~ .command-list > li {
+    display: inline-block;
+    animation: fade-in 1s linear forwards;
+}
+
+.command-list > li:hover {
+    border-color: #5cf;
+    box-shadow: 0 0 5px #5cf;
+}
+
+.command-list > li:hover::before {
+    box-shadow: 0 0 50px #5cf,
+                 0 0 15px #5cf inset;
+}
+
+.command-list > li:hover > i { color: #5cf; }
+
+.command-list > li:nth-child(1) { transform: translateX(100px) translateY(45px); }
+
+.command-list > li:nth-child(1):hover ~ .hey-rammy::after { content: "Hey Rammy, share a cyber hack?"; }
+
+.command-list > li:nth-child(2) { transform: translateX(-15px) translateY(-15px); }
+
+.command-list > li:nth-child(2):hover ~ .hey-rammy::after { content: "Hey Rammy, what time is it?"; }
+
+.command-list > li:nth-child(3) { transform: translateX(-35px) translateY(-55px); }
+
+.command-list > li:nth-child(3):hover ~ .hey-rammy::after { content: "Hey Rammy, what's today?"; }
+
+.command-list > li:nth-child(4) { transform: translateX(35px) translateY(-55px); }
+
+.command-list > li:nth-child(4):hover ~ .hey-rammy::after { content: "Hey Rammy, tell me a joke."; }
+
+.command-list > li:nth-child(5) { transform: translateX(15px) translateY(-15px); }
+
+.command-list > li:nth-child(5):hover ~ .hey-rammy::after { content: "Hey Rammy..."; }
+
+.command-list > li:nth-child(6) { transform: translateX(-100px) translateY(45px); }
+
+.command-list > li:nth-child(6):hover ~ .hey-rammy::after { content: "Hey Rammy, share a life hack?"; }
+
+
+
+/* Hey Rammy */
+.hey-rammy {
+    position: relative;
+    transform: translateY(50px);
+    margin: 0;
+}
+
+.hey-rammy::after {
+    display: block;
+    content: "Hey Rammy...";
+    color: #5cf;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #5cf;
+    padding: 10px;
+}
+
+/* Animations */
+@keyframes breathe-and-jump {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1) translateY(-10px); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1) translateY(10px); }
+    100% { transform: scale(1); }
+}
+
+@keyframes blink {
+    0%, 20%, 60%, 100% { transform: scaleY(1); }
+    10%, 50% { transform: scaleY(0.1); }
+}
+
+@keyframes jump-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake-pulse {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1.2); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce-then-breathe {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes deactivate {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes deactivate-platform {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .rammy {
+        width: 100px;
+        height: 85px;
+    }
+
+    .command-list > li {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .hey-rammy {
+        font-size: 1.25rem;
+    }
+
+    .hey-rammy::after {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .rammy {
+        width: 80px;
+        height: 65px;
+    }
+
+    .command-list > li {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+
+    .hey-rammy {
+        font-size: 1rem;
+    }
+
+    .hey-rammy::after {
+        font-size: 1.5rem;
+    }
+}

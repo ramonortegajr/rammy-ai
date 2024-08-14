@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CDN -->
+    <title>Rammy - AI</title>
+</head>
+<body>
+    <div id="primary-content" class="centered-content">
+        <h1 class="display-3">Hello there!</h1>
+        <p class="lead">Meet Rammy, your new bisaya personal assistant with an outstanding personality!</p>
+        <div class="personal-assistant">
+            <div id="rammy" class="rammy" onclick="activateRammy();">
+                <div class="eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+              
+            </div>
+            <br>
+            <br>
+            <div class="platform"></div>
+            <ul class="command-list">
+                <li><i class="fas fa-lock" onclick="getSecurity();"></i></li>
+                <li><i class="fas fa-clock" onclick="getTime();"></i></li>
+                <li><i class="fas fa-calendar-alt" onclick="getDate();"></i></li>
+                <li><i class="fas fa-laugh-squint" onclick="tellJoke();"></i></li>
+                <li><i class="fas fa-search" onclick="searchGoogle();"></i></li>
+                <li><i class="fas fa-lightbulb" onclick="showlifehacks();"></i></li>
+                <p class="hey-rammy lead"></p>
+            </ul>
+        </div>
+        <div id="response-frame" class="response-frame">
+            <p id="response-message" class="lead"></p>
+            <i class="fas fa-times" onclick="closeResponse();"></i>
+        </div>
+    </div>
+   <script src="js/script.js"></script>
+</body>
+</html>
