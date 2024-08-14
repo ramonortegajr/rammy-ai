@@ -253,7 +253,7 @@ html, body {
 
 .command-list > li:nth-child(5) { transform: translateX(15px) translateY(-15px); }
 
-.command-list > li:nth-child(5):hover ~ .hey-rammy::after { content: "Hey Rammy..."; }
+.command-list > li:nth-child(5):hover ~ .hey-rammy::after { content: "Hey Rammy, did you know?"; }
 
 .command-list > li:nth-child(6) { transform: translateX(-100px) translateY(45px); }
 
