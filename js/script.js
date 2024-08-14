@@ -353,6 +353,15 @@ function activateRammy() {
     }, 5000);
 }
 
+function deactivateRammy() {
+	userMadeDecision = true;
+	felix.classList.remove("active");
+	felix.classList.add("inactive");
+	setTimeout(function() {
+		felix.classList.remove("inactive");
+	}, 750);
+}
+
 function getSecurity() {
     var index = Math.floor((Math.random() * securityhacks.length) - 1);
 	responseMessage.innerText = securityhacks[index];
@@ -376,7 +385,7 @@ function tellJoke() {
 	showResponse();
 }
 function searchGoogle() {
-	deactivateRammy();
+	// deactivateRammy();
 	window.open("https://www.google.com/", "_blank");
 }
 function showlifehacks() {
@@ -384,11 +393,9 @@ function showlifehacks() {
 	responseMessage.innerText = lifehacks[index];
 	showResponse();
 }
-
 function showResponse() {
-    responseFrame.style.display = 'block';
-    setTimeout(function() {
-        responseFrame.style.display = 'none';
-    }, 50000);
+	responseFrame.classList.add("active");
+	deactivateFelix();
 }
-
+function closeResponse() { responseFrame.classList.remove("active"); }
+changeTheme(SiteTheme.Dark);
